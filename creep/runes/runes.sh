@@ -11,9 +11,13 @@ function runes.isRune {
 	return 255
 }
 
-function runes.publicKey {}
+function runes.publicKey {
 
-function runes.privateKey {}
+}
+
+function runes.privateKey {
+	
+}
 
 function runes.encrypt {
 	# openssl rsautl -encrypt -pubin -inkey $PUBKEY -in .env -out .env.encoded
