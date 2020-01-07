@@ -1,0 +1,19 @@
+#!/bin/sh
+
+echo "runes"
+
+# Reading the runes files
+readarray RUNES < .runes
+
+# Checks if the given path belongs to the runes file.
+function isRune {
+	for RUNE in ${RUNES[@]}; do
+		if [[ $RUNE == $1 ]]; then
+			return 0
+		fi
+	done
+
+	return 255
+}
+
+FILES=$(git status --porcelain)
