@@ -5,16 +5,17 @@ function runes.log {
 }
 
 function runes.load {
-	local runesFile=.creep/.runess
+	local runesFile=.creep/.runes
 	local pubKeyFile=.creep/runes.public.key
-	local privKeyFile=.creep/runes.public.key
+	local privKeyFile=.creep/runes.private.key
 	
 	if [[ -f $runesFile ]]; then
 		readarray RUNES < $runesFile
 
 		if [[ ! (-f $pubKeyFile && -f $privKeyFile) ]]; then
 			runes.log "${lcErr}You don't have any keys to encrypt your content with."
-			runes.log "${lcHint}Create a pair of keys by running ${lcCmd}./creep/runes/keygen.sh."
+			runes.log "${lcHint}Create a pair of keys by running ${lcCmd}creep/runes/keygen.sh${lcX}."
+			runes.log "${lcHint}You can also use your own keys by storing them as ${lcCmd}${pubKeyFile}${lcHint} and ${lcCmd}${privKeyFile}"
 			return 255
 		fi
 	else

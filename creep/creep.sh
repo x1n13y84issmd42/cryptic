@@ -2,7 +2,7 @@
 
 source creep/git.sh
 
-#	Log colors & styles
+# Log colors & styles
 lc0="\e[0m"
 
 lc1="\e[1m"
@@ -57,6 +57,7 @@ lcbgWhite="\e[107m"
 
 lcX="$lc0$lcDGray"
 
+# Styles
 lcErr="$lcbgRed$lcWhite"
 lcHint="${lcbgLGray}$lcBlack"
-lcCmd="$lcbgLGray$lcRed"
+lcCmd="$lcbgLGray$lcBlue"

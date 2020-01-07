@@ -4,6 +4,7 @@ source creep/runes/runes.sh
 source creep/creep.sh
 
 if ! runes.load; then
+	runes.log "Aborting."
 	exit 255
 fi
 
