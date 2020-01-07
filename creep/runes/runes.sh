@@ -34,8 +34,6 @@ function runes.load {
 		if [[ ! (-f $PUB_KEY_FILE && -f $PRIV_KEY_FILE) ]]; then
 			runes.log "${lcHint}Create a pair of keys by running ${lcCmd}creep/runes/keygen.sh${lcX}."
 		fi;
-
-		runes.load.passKey;
 	else
 		runes.log "You don't have a runes file. ${lcHint}Create a ${lcCmd}${RUNES_FILE}${lcHint} file in your project root to start using the encryption."
 	fi
@@ -82,6 +80,13 @@ function runes.passKey {
 	# fi
 
 	echo $PASS_KEY_FILE
+}
+
+# Initializes the encryption process by generating a new passkey file.
+function runes.encrypt.start {
+	if runes.encrypt.precondition "start the encryption"; then
+		runes.load.passKey;
+	fi
 }
 
 # Encrypts a single file with a passkey which is generated once per commit.
