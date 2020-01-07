@@ -3,7 +3,7 @@
 source creep/creep.sh
 source creep/runes/runes.sh
 
-BITS=${1:-2048}
+BITS=${1:-4096}
 
 runes.log "Generating a pair of keys ($BITS bits long) to encrypt your files with."
 runes.log "You will be prompted for a passphrase - ${lcHint}don't care about it's complexity${lcX}, it will be stripped from the key later."
