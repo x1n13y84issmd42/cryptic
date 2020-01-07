@@ -96,6 +96,7 @@ function runes.encrypt {
 	if runes.encrypt.precondition "encrypt" $1; then
 		local passKey=$(runes.passKey)
 		local tmpFN="$1.enc"
+
 		runes.log "Encrypting \e[35m\e[7m${1}\e[0m"
 		openssl enc -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN
 		mv $tmpFN $1
@@ -107,8 +108,12 @@ function runes.encrypt.finish {
 	if runes.encrypt.precondition "finish the encryption"; then
 		local pubKey=$(runes.publicKey)
 		local passKey=$(runes.passKey)
+		local tmpFN="$passKey.enc"
+
 		runes.log "Finalizing the encryption by encrypting the $passKey file..."
-		openssl rsautl -encrypt -pubin -inkey $pubKey -in $passKey -out $passKey
+		runes.log "openssl rsautl -encrypt -pubin -inkey $pubKey -in $passKey -out $tmpFN"
+		openssl rsautl -encrypt -pubin -inkey $pubKey -in $passKey -out $tmpFN
+		mv $tmpFN $passKey
 
 		runes.log "Adding it to the repository..."
 		git.add $passKey
