@@ -12,11 +12,11 @@ function runes.isRune {
 }
 
 function runes.publicKey {
-
+	#
 }
 
 function runes.privateKey {
-	
+	#
 }
 
 function runes.encrypt {
