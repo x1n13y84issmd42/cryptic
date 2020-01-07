@@ -15,7 +15,7 @@ for FILE in ${FILES[@]}; do
 	FILE=${FILE#*  } # Trimming that leading "M  " status marker.
 
 	if runes.isRune $FILE; then
-		runes.log "Found a rune ${FILE}"
+		runes.log "Encrypting the ${FILE} file."
 		runes.encrypt $FILE
 		#TODO: encrypt
 	fi;
