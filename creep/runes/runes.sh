@@ -91,7 +91,7 @@ function runes.encrypt {
 	if runes.encrypt.precondition "encrypt" $1; then
 		local passKey=$(runes.passKey)
 		local tmpFN="$1.enc"
-		runes.log "Encrypting $1 with a $passKey"
+		runes.log "Encrypting \e[35m\e[7m${1}\e[0m"
 		openssl enc -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN
 		mv $tmpFN $1
 	fi
@@ -128,7 +128,7 @@ function runes.decrypt {
 		local passKey=$(runes.passKey)
 		local tmpFN="$1.dec"
 
-		runes.log "Decrypting $1 with a $passKey"
+		runes.log "Decrypting \e[35m\e[7m${1}\e[0m"
 		openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN
 		mv $tmpFN $1
 	fi
@@ -142,7 +142,7 @@ function runes.decrypt {
 function runes.decrypt.precondition {
 	local privKey=$(runes.privateKey)
 	if [[ ! -f $privKey ]]; then
-		runes.log "${lcErr}Cannot $1 $2 because private key is absent."
+		runes.log "${lcErr}Cannot $1 $2 because private key is missing."
 
 		return 255
 	fi
@@ -158,7 +158,7 @@ function runes.decrypt.precondition {
 function runes.encrypt.precondition {
 	local privKey=$(runes.publicKey)
 	if [[ ! -f $privKey ]]; then
-		runes.log "${lcErr}Cannot $1 $2 because public key is absent."
+		runes.log "${lcErr}Cannot $1 $2 because public key is missing."
 
 		return 255
 	fi
