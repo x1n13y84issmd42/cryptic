@@ -41,7 +41,7 @@ function runes.load {
 
 # Generates a new passkey file.
 # Usually it's used once per commit.
-function runes.load.passKey {
+function runes.new.passKey {
 	runes.log "Generating a new passkey file..."
 	openssl rand -hex 128 > $PASS_KEY_FILE
 }
@@ -76,7 +76,7 @@ function runes.privateKey {
 # Outputs a path to a passkey file.
 function runes.passKey {
 	# if [[ ! -f PASS_KEY_FILE ]]; then
-	# 	runes.load.passKey;
+	# 	runes.new.passKey;
 	# fi
 
 	echo $PASS_KEY_FILE
@@ -85,7 +85,7 @@ function runes.passKey {
 # Initializes the encryption process by generating a new passkey file.
 function runes.encrypt.start {
 	if runes.encrypt.precondition "start the encryption"; then
-		runes.load.passKey;
+		runes.new.passKey;
 	fi
 }
 
@@ -121,6 +121,7 @@ function runes.decrypt.start {
 	if runes.decrypt.precondition "start the decryption"; then
 		local privKey=$(runes.privateKey)
 		local passKey=$(runes.passKey)
+		runes.log "openssl rsautl -decrypt -inkey $privKey -in $passKey -out $passKey"
 		openssl rsautl -decrypt -inkey $privKey -in $passKey -out $passKey
 	fi
 }
@@ -134,6 +135,7 @@ function runes.decrypt {
 		local tmpFN="$1.dec"
 
 		runes.log "Decrypting \e[35m\e[7m${1}\e[0m"
+		runes.log "openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN"
 		openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN
 		mv $tmpFN $1
 	fi
