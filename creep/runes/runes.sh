@@ -132,11 +132,12 @@ function runes.decrypt {
 # Checks if it's generally makes sense to try to decrypt something by ensuring
 # there is a private key file in place.
 # Arguments:
-#	$1 A file name being decrypted
+#	$1 A name of operation the precondition is checked for.
+#	$2 A file name being decrypted.
 function runes.decrypt.precondition {
 	local privKey=$(runes.privateKey)
 	if [[ ! -f $privKey ]]; then
-		runes.log "${lcErr}Cannot decrypt $1 because private key is absent."
+		runes.log "${lcErr}Cannot $1 $2 because private key is absent."
 
 		return 255
 	fi
