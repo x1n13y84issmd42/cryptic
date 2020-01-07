@@ -77,9 +77,9 @@ function runes.privateKey {
 
 # Outputs a path to a passkey file.
 function runes.passKey {
-	if [[ ! -f PASS_KEY_FILE ]]; then
-		runes.new.passKey;
-	fi
+	# if [[ ! -f PASS_KEY_FILE ]]; then
+	# 	runes.load.passKey;
+	# fi
 
 	echo $PASS_KEY_FILE
 }
