@@ -22,4 +22,5 @@ for FILE in ${FILES[@]}; do
 	if isRune $FILE; then
 		echo "Found a rune ${FILE}"
 		#TODO: encrypt
+	fi;
 done
