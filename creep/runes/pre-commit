@@ -20,7 +20,7 @@ IFS=$'\n'
 FILES=$(git status --porcelain)
 
 for FILE in ${FILES[@]}; do
-	F=${FILE#* }
+	F=${FILE#*  }
 	echo "Checking the files (${FILE}) ($F)"
 	if isRune $FILE; then
 		echo "Found a rune ${FILE}"
