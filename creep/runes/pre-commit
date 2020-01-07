@@ -16,7 +16,7 @@ function isRune {
 	return 255
 }
 
-IFS=$'\0'
+IFS=$'\n'
 FILES=$(git status --porcelain)
 
 for FILE in ${FILES[@]}; do
