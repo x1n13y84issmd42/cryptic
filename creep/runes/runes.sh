@@ -17,17 +17,19 @@ function runes.isRune {
 
 function runes.publicKey {
 	#asd
-	
+	echo ""
 }
 
 function runes.privateKey {
 	#a
-	;
+	echo ""
 }
 
 function runes.encrypt {
 	# openssl rsautl -encrypt -pubin -inkey $PUBKEY -in .env -out .env.encoded
-	;
+	echo ""
 }
 
-function runes.decrypt {}
+function runes.decrypt {
+	echo ""
+}
