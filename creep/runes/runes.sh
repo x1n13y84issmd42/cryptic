@@ -91,6 +91,7 @@ function runes.encrypt {
 	if runes.encrypt.precondition "encrypt" $1; then
 		local passKey=$(runes.passKey)
 		runes.log "Encrypting $1 with a $passKey"
+		runes.log "openssl enc -aes-256-cbc -pass file:$passKey -in $1 -out $1"
 		openssl enc -aes-256-cbc -pass file:$passKey -in $1 -out $1
 	fi
 }
@@ -125,6 +126,7 @@ function runes.decrypt {
 	if runes.decrypt.precondition "decrypt" $1; then
 		local passKey=$(runes.passKey)
 		runes.log "Decrypting $1 with a $passKey"
+		runes.log "openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $1"
 		openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $1
 	fi
 }
