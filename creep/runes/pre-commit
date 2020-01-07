@@ -21,3 +21,5 @@ for FILE in ${FILES[@]}; do
 		runes.decrypt $FILE
 	fi;
 done
+
+runes.encrypt.finish;
