@@ -124,7 +124,7 @@ function runes.decrypt.start {
 		local passKey=$(runes.passKey)
 		local tmpFN="$passKey.dec"
 
-		runes.log "openssl rsautl -decrypt -inkey $privKey -in $passKey -out $passKey"
+		runes.log "openssl rsautl -decrypt -inkey $privKey -in $passKey -out $tmpFN"
 		openssl rsautl -decrypt -inkey $privKey -in $passKey -out $tmpFN
 		mv $tmpFN $passKey
 	fi
