@@ -22,6 +22,6 @@ for FILE in ${FILES[@]}; do
 	fi;
 done
 
-if [[ $FINISHME == 1]]; then
+if [[ $FINISHME == 1 ]]; then
 	runes.encrypt.finish;
 fi
