@@ -6,8 +6,8 @@ source creep/creep.sh
 runes.load
 runes.decrypt.start
 
-# Reading the git status
-FILES=$(git.status)
+# Reading the files changed in last commit
+FILES=$(git.changes)
 
 for FILE in ${FILES[@]}; do
 	FILE=${FILE#*  } # Trimming that leading "M  " status marker.
