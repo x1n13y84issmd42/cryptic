@@ -16,8 +16,10 @@ function runes.isRune {
 }
 
 function runes.publicKey {
-	#asd
-	echo ""
+	local file=.creep/runes.public.key
+	if [[ -f $file ]]; then
+		echo $file
+	fi
 }
 
 function runes.privateKey {
@@ -26,8 +28,8 @@ function runes.privateKey {
 }
 
 function runes.encrypt {
-	# openssl rsautl -encrypt -pubin -inkey $PUBKEY -in .env -out .env.encoded
-	echo ""
+	local pubKey=$(runes.publicKey)
+	runes.log "openssl rsautl -encrypt -pubin -inkey $pubKey -in $1 -out $1"
 }
 
 function runes.decrypt {
