@@ -113,7 +113,7 @@ function runes.encrypt.finish {
 		runes.log "Finalizing the encryption by encrypting the $passKey file..."
 		runes.log "openssl rsautl -encrypt -pubin -inkey $pubKey -in $passKey -out $tmpFN"
 		openssl rsautl -encrypt -pubin -inkey $pubKey -in $passKey -out $tmpFN
-		mv $tmpFN $passKey
+		cp $tmpFN $passKey
 
 		runes.log "Adding it to the repository..."
 		git.add $passKey
