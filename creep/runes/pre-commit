@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source runes.sh
+source ./runes.sh
 
 echo "runes"
 
