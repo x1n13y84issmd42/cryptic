@@ -24,11 +24,11 @@ function runes.load {
 		readarray RUNES < $RUNES_FILE
 
 		if [[ ! -f $PUB_KEY_FILE ]]; then
-			runes.log "${lcErr}You don't a public key to encrypt your content with, so you won't be able to commit to this repository."
+			runes.log "${lcErr}You don't have a public key to encrypt your content with, so you won't be able to commit to this repository."
 		fi
 
 		if [[ ! -f $PRIV_KEY_FILE ]]; then
-			runes.log "${lcErr}You don't a private key to decrypt your content with, so you won't be able to access contents of some files from this repository."
+			runes.log "${lcErr}You don't have a private key to decrypt your content with, so you won't be able to access contents of some files from this repository."
 		fi
 
 		if [[ ! (-f $PUB_KEY_FILE && -f $PRIV_KEY_FILE) ]]; then
