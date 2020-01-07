@@ -16,8 +16,6 @@ PASS_KEY_FILE=.creep/runes.pass.key
 # giving some hints on where to obtain them on case they're missing,
 # and, if everything is in place, reading the .runes file.
 function runes.load {
-	runes.log "Loading..."
-	
 	# Checking for the .runes file
 	if [[ -f $RUNES_FILE ]]; then
 		# Reading it
@@ -110,26 +108,23 @@ function runes.encrypt.finish {
 		local passKey=$(runes.passKey)
 		local tmpFN="$passKey.enc"
 
-		runes.log "Finalizing the encryption by encrypting the $passKey file..."
-		runes.log "openssl rsautl -encrypt -pubin -inkey $pubKey -in $passKey -out $tmpFN"
+		runes.log "Encrypting the \e[35m\e[7m$passKey\e[0m file and adding it to the repository..."
 		openssl rsautl -encrypt -pubin -inkey $pubKey -in $passKey -out $tmpFN
 		cp $tmpFN $passKey
-
-		runes.log "Adding it to the repository..."
 		git.add $passKey
+
 		runes.log "\o/"
 	fi;
 }
 
 # Initializes the decryption process by decrypting the passkey file first.
 function runes.decrypt.start {
-	runes.log "runes.decrypt.start"
 	if runes.decrypt.precondition "start the decryption"; then
 		local privKey=$(runes.privateKey)
 		local passKey=$(runes.passKey)
 		local tmpFN="$passKey.dec"
 
-		runes.log "openssl rsautl -decrypt -inkey $privKey -in $passKey -out $tmpFN"
+		runes.log "Decrypting the \e[35m\e[7m$passKey\e[0m file..."
 		openssl rsautl -decrypt -inkey $privKey -in $passKey -out $tmpFN
 		mv $tmpFN $passKey
 	fi
@@ -144,7 +139,6 @@ function runes.decrypt {
 		local tmpFN="$1.dec"
 
 		runes.log "Decrypting \e[35m\e[7m${1}\e[0m"
-		runes.log "openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN"
 		openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN
 		mv $tmpFN $1
 	fi
