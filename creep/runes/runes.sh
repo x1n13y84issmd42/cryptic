@@ -64,17 +64,17 @@ function runes.privateKey {
 	fi
 }
 
-HAS_PASSKEY=0
+HAS_PASSKEY="nah"
 
 # Outputs a path to a passkey file, generating it along the way when needed.
 # Usually it's once per commit.
 function runes.passKey {
 	local file=.creep/runes.pass.key
 
-	if [[ $HAS_PASSKEY == 0 ]]; then
+	if [[ $HAS_PASSKEY == "nah" ]]; then
 		runes.log "Generating a new passkey file..."
 		openssl rand -hex 128 > $file
-		HAS_PASSKEY=1
+		HAS_PASSKEY="ye"
 	fi
 
 	echo $file
