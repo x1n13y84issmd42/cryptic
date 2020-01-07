@@ -122,8 +122,11 @@ function runes.decrypt.start {
 	if runes.decrypt.precondition "start the decryption"; then
 		local privKey=$(runes.privateKey)
 		local passKey=$(runes.passKey)
+		local tmpFN="$passKey.dec"
+
 		runes.log "openssl rsautl -decrypt -inkey $privKey -in $passKey -out $passKey"
-		openssl rsautl -decrypt -inkey $privKey -in $passKey -out $passKey
+		openssl rsautl -decrypt -inkey $privKey -in $passKey -out $tmpFN
+		mv $tmpFN $passKey
 	fi
 }
 
