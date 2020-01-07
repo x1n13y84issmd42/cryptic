@@ -54,10 +54,10 @@ function runes.privateKey {
 
 function runes.encrypt {
 	local pubKey=$(runes.publicKey)
-	runes.log "openssl rsautl -encrypt -pubin -inkey $pubKey -in $1 -out $1"
+	openssl rsautl -encrypt -pubin -inkey $pubKey -in $1 -out $1
 }
 
 function runes.decrypt {
 	local privKey=$(runes.privateKey)
-	runes.log "openssl rsautl -decrypt -inkey $privKey -in $1 -out $1"
+	openssl rsautl -decrypt -inkey $privKey -in $1 -out $1
 }
