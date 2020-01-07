@@ -8,8 +8,8 @@ function runes.log {
 }
 
 RUNES_FILE=.creep/.runes
-PUB_KEY_FILE=.creep/runes.public.keyy
-PRIV_KEY_FILE=.creep/runes.private.keyy
+PUB_KEY_FILE=.creep/runes.public.key
+PRIV_KEY_FILE=.creep/runes.private.key
 PASS_KEY_FILE=.creep/runes.pass.key
 
 # Initalizes the thing by checking for presence of needed files,
