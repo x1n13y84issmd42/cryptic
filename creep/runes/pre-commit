@@ -16,6 +16,7 @@ for FILE in ${FILES[@]}; do
 
 	if runes.isRune $FILE; then
 		runes.log "Found a rune ${FILE}"
+		runes.encrypt $FILE
 		#TODO: encrypt
 	fi;
 done
