@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source creep/runes/runes.sh
 
@@ -7,12 +7,10 @@ echo "runes"
 # Reading the runes files
 readarray RUNES < .creep/.runes
 
-IFS=$'\n'
-FILES=$(git status --porcelain)
+FILES=$(git.status)
 
 for FILE in ${FILES[@]}; do
 	FILE=${FILE#*  }
-	echo "Checking the files ($FILE)"
 	if runes.isRune $FILE; then
 		echo "Found a rune ${FILE}"
 		#TODO: encrypt

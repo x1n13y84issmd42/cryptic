@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 function git.status {
+	IFS=$'\n'
 	git status --porcelain
 }
 

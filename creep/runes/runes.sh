@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Checks if the given path belongs to the runes file.
 function runes.isRune {
@@ -11,8 +11,12 @@ function runes.isRune {
 	return 255
 }
 
-function runes.checkKeys {}
+function runes.publicKey {}
 
-function runes.encrypt {}
+function runes.privateKey {}
+
+function runes.encrypt {
+	# openssl rsautl -encrypt -pubin -inkey $PUBKEY -in .env -out .env.encoded
+}
 
 function runes.decrypt {}
