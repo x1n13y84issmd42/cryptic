@@ -6,10 +6,7 @@ source creep/creep.sh
 runes.load
 runes.decrypt.start
 
-# Reading the files changed in last commit
-FILES=$(git.changes)
-
-for FILE in ${FILES[@]}; do
+for FILE in ${RUNES[@]}; do
 	FILE=${FILE#*  } # Trimming that leading "M  " status marker.
 
 	if runes.isRune $FILE; then
