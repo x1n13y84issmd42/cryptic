@@ -3,10 +3,9 @@
 source creep/runes/runes.sh
 source creep/creep.sh
 
-log=runes.log
-
-# Reading the runes files
-readarray RUNES < .creep/.runess
+if ! runes.load; then
+	exit 255
+fi
 
 # Reading the git status
 FILES=$(git.status)
