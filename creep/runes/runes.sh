@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function runes.log {
-	_IFS=$IFS && IFS='' && echo -e "\e[35m dist\e[0m" $@ >&2 && IFS=$_IFS
+	_IFS=$IFS && IFS='' && echo -e "\e[35mrunes\e[0m" $@ >&2 && IFS=$_IFS
 }
 
 # Checks if the given path belongs to the runes file.
