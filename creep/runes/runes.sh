@@ -83,7 +83,7 @@ function runes.passKey {
 function runes.encrypt {
 	local passKey=$(runes.passKey)
 	runes.log "Encrypting $1 with a $passKey"
-	openssl enc -aes-256-cbc -pass $passKey -in $1 -out $1
+	openssl enc -aes-256-cbc -pass file:$passKey -in $1 -out $1
 }
 
 # Finalizes the encryption by encrypting the passkey file and adding it to the repository.
