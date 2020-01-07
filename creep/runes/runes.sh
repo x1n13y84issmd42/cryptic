@@ -64,12 +64,15 @@ function runes.privateKey {
 	fi
 }
 
+runes.log "Reinit passkey? $HAS_PASSKEY"
 HAS_PASSKEY="nah"
 
 # Outputs a path to a passkey file, generating it along the way when needed.
 # Usually it's once per commit.
 function runes.passKey {
 	local file=.creep/runes.pass.key
+
+	runes.log "Got passkey? $HAS_PASSKEY"
 
 	if [[ $HAS_PASSKEY == "nah" ]]; then
 		runes.log "Generating a new passkey file..."
