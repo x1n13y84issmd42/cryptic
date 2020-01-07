@@ -70,6 +70,7 @@ function runes.passKey {
 	local file=.creep/runes.pass.key
 
 	if [[ $HAS_PASSKEY == 0 ]]; then
+		runes.log "Generating a new passkey file..."
 		openssl rand -hex 128 > $file
 		HAS_PASSKEY=1
 	fi
@@ -112,5 +113,5 @@ function runes.decrypt {
 	local privKey=$(runes.privateKey)
 	local passKey=$(runes.passKey)
 	runes.log "Decrypting $1 with a $passKey"
-	openssl enc -d -aes-256-cbc -pass $passKey -in $1 -out $1
+	openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $1
 }
