@@ -9,6 +9,7 @@ function runes.load {
 	local pubKeyFile=.creep/runes.public.key
 	local privKeyFile=.creep/runes.private.key
 	
+	# Checking for the .runes file
 	if [[ -f $runesFile ]]; then
 		readarray RUNES < $runesFile
 
@@ -20,6 +21,7 @@ function runes.load {
 		fi
 	else
 		runes.log "You don't have a runes file. ${lcHint}Create a ${lcCmd}${runesFile}${lcHint} file in your project root to start using the encryption."
+		# It's not an error though.
 	fi
 
 	return 0
@@ -44,8 +46,10 @@ function runes.publicKey {
 }
 
 function runes.privateKey {
-	#a
-	echo ""
+	local file=.creep/runes.private.key
+	if [[ -f $file ]]; then
+		echo $file
+	fi
 }
 
 function runes.encrypt {
@@ -54,5 +58,6 @@ function runes.encrypt {
 }
 
 function runes.decrypt {
-	echo ""
+	local privKey=$(runes.privateKey)
+	runes.log "openssl rsautl -decrypt -inkey $privKey -in $1 -out $1"
 }
