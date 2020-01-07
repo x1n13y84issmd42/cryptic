@@ -8,6 +8,7 @@ runes.encrypt.start
 
 # Reading the git status
 FILES=$(git.status)
+FINISHME=0
 
 for FILE in ${FILES[@]}; do
 	FILE=${FILE#*  } # Trimming that leading "M  " status marker.
@@ -16,7 +17,11 @@ for FILE in ${FILES[@]}; do
 		runes.encrypt $FILE
 		git.add $FILE
 		runes.decrypt $FILE
+
+		FINISHME=1
 	fi;
 done
 
-runes.encrypt.finish;
+if [[ $FINISHME == 1]]; then
+	runes.encrypt.finish;
+fi

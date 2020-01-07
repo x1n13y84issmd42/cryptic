@@ -118,6 +118,7 @@ function runes.encrypt.finish {
 
 # Initializes the decryption process by decrypting the passkey file first.
 function runes.decrypt.start {
+	runes.log "runes.decrypt.start"
 	if runes.decrypt.precondition "start the decryption"; then
 		local privKey=$(runes.privateKey)
 		local passKey=$(runes.passKey)
