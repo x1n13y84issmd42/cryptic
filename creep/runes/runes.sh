@@ -92,7 +92,6 @@ function runes.encrypt {
 		local passKey=$(runes.passKey)
 		local tmpFN="$1.enc"
 		runes.log "Encrypting $1 with a $passKey"
-		runes.log "openssl enc -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN"
 		openssl enc -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN
 		mv $tmpFN $1
 	fi
@@ -130,7 +129,6 @@ function runes.decrypt {
 		local tmpFN="$1.dec"
 
 		runes.log "Decrypting $1 with a $passKey"
-		runes.log "openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN"
 		openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $tmpFN
 		mv $tmpFN $1
 	fi

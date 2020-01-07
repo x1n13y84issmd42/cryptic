@@ -12,7 +12,7 @@ for FILE in ${FILES[@]}; do
 	FILE=${FILE#*  } # Trimming that leading "M  " status marker.
 
 	if runes.isRune $FILE; then
-		runes.log "Encrypting the ${lcWhite}\e[7m${FILE}\e[0m file."
+		runes.log "Encrypting the \e[35m\e[7m${FILE}\e[0m file."
 		runes.encrypt $FILE
 		git.add $FILE
 		runes.decrypt $FILE
