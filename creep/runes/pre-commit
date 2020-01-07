@@ -1,20 +1,11 @@
 #!/bin/sh
 
+source runes.sh
+
 echo "runes"
 
 # Reading the runes files
-readarray RUNES < .runes
-
-# Checks if the given path belongs to the runes file.
-function isRune {
-	for RUNE in ${RUNES[@]}; do
-		if [[ $RUNE == $1 ]]; then
-			return 0
-		fi
-	done
-
-	return 255
-}
+readarray RUNES < .creep/.runes
 
 IFS=$'\n'
 FILES=$(git status --porcelain)
@@ -22,7 +13,7 @@ FILES=$(git status --porcelain)
 for FILE in ${FILES[@]}; do
 	FILE=${FILE#*  }
 	echo "Checking the files ($FILE)"
-	if isRune $FILE; then
+	if runes.isRune $FILE; then
 		echo "Found a rune ${FILE}"
 		#TODO: encrypt
 	fi;
