@@ -1,5 +1,9 @@
 #!/bin/bash
 
+function runes.log {
+	_IFS=$IFS && IFS='' && echo -e "\e[35m dist\e[0m" $@ >&2 && IFS=$_IFS
+}
+
 # Checks if the given path belongs to the runes file.
 function runes.isRune {
 	for RUNE in ${RUNES[@]}; do
@@ -13,7 +17,7 @@ function runes.isRune {
 
 function runes.publicKey {
 	#asd
-	;
+	
 }
 
 function runes.privateKey {
