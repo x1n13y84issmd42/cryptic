@@ -88,7 +88,7 @@ function runes.passKey {
 # Arguments:
 #	@1 A path to a file to encrypt.
 function runes.encrypt {
-	if runes.encrypt.precondition; then
+	if runes.encrypt.precondition $1; then
 		local passKey=$(runes.passKey)
 		runes.log "Encrypting $1 with a $passKey"
 		openssl enc -aes-256-cbc -pass file:$passKey -in $1 -out $1
@@ -97,7 +97,7 @@ function runes.encrypt {
 
 # Finalizes the encryption by encrypting the passkey file and adding it to the repository.
 function runes.encrypt.finish {
-	if runes.encrypt.precondition; then
+	if runes.encrypt.precondition "(finish the encryption, actually)"; then
 		local pubKey=$(runes.publicKey)
 		local passKey=$(runes.passKey)
 		runes.log "Finalizing the encryption by encrypting the $passKey file..."
@@ -111,7 +111,7 @@ function runes.encrypt.finish {
 
 # Initializes the decryption process by decrypting the passkey file first.
 function runes.decrypt.start {
-	if runes.decrypt.precondition; then
+	if runes.decrypt.precondition "(start the decryption, acktually)"; then
 		local privKey=$(runes.privateKey)
 		local passKey=$(runes.passKey)
 		openssl rsautl -decrypt -inkey $privKey -in $passKey -out $passKey
@@ -122,7 +122,7 @@ function runes.decrypt.start {
 # Arguments:
 #	@1 A path to a file to decrypt.
 function runes.decrypt {
-	if runes.decrypt.precondition; then
+	if runes.decrypt.precondition $1; then
 		local passKey=$(runes.passKey)
 		runes.log "Decrypting $1 with a $passKey"
 		openssl enc -d -aes-256-cbc -pass file:$passKey -in $1 -out $1
