@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source creep/runes/runes.sh
+source creep/creep.sh
 
 log=runes.log
 
