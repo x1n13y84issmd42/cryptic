@@ -5,19 +5,17 @@ source creep/creep.sh
 
 log=runes.log
 
-echo "hola"
-runes.log "hola"
-$log "hola"
-
 # Reading the runes files
 readarray RUNES < .creep/.runes
 
+# Reading the git status
 FILES=$(git.status)
 
 for FILE in ${FILES[@]}; do
-	FILE=${FILE#*  }
+	FILE=${FILE#*  } # Trimming that leading "M  " status marker.
+
 	if runes.isRune $FILE; then
-		echo "Found a rune ${FILE}"
+		runes.log "Found a rune ${FILE}"
 		#TODO: encrypt
 	fi;
 done
