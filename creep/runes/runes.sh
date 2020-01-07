@@ -14,6 +14,8 @@ function runes.load {
 	local runesFile=.creep/.runes
 	local pubKeyFile=.creep/runes.public.key
 	local privKeyFile=.creep/runes.private.key
+
+	runes.log "Loading..."
 	
 	# Checking for the .runes file
 	if [[ -f $runesFile ]]; then
