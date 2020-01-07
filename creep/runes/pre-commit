@@ -5,7 +5,7 @@ source creep/runes/runes.sh
 log=runes.log
 
 echo "runes"
-log "runes"
+runes.log "runes"
 
 # Reading the runes files
 readarray RUNES < .creep/.runes
