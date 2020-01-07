@@ -6,7 +6,7 @@ source creep/creep.sh
 log=runes.log
 
 # Reading the runes files
-readarray RUNES < .creep/.runes
+readarray RUNES < .creep/.runess
 
 # Reading the git status
 FILES=$(git.status)
