@@ -25,13 +25,15 @@ function runes.load {
 
 		if [[ ! -f $PUB_KEY_FILE ]]; then
 			runes.log "${lcErr}You don't a public key to encrypt your content with, so you won't be able to commit to this repository."
-			runes.log "${lcHint}Create a pair of keys by running ${lcCmd}creep/runes/keygen.sh${lcX}."
 		fi
 
 		if [[ ! -f $PRIV_KEY_FILE ]]; then
 			runes.log "${lcErr}You don't a private key to decrypt your content with, so you won't be able to access contents of some files from this repository."
-			runes.log "${lcHint}Create a pair of keys by running ${lcCmd}creep/runes/keygen.sh${lcX}."
 		fi
+
+		if [[ ! (-f $PUB_KEY_FILE && -f $PRIV_KEY_FILE) ]]; then
+			runes.log "${lcHint}Create a pair of keys by running ${lcCmd}creep/runes/keygen.sh${lcX}."
+		fi;
 
 		runes.load.passKey;
 	else
