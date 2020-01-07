@@ -20,7 +20,8 @@ IFS=$'\n'
 FILES=$(git status --porcelain)
 
 for FILE in ${FILES[@]}; do
-	echo "Checking the files (${FILE})"
+	F=${FILE#* }
+	echo "Checking the files (${FILE}) ($F)"
 	if isRune $FILE; then
 		echo "Found a rune ${FILE}"
 		#TODO: encrypt
