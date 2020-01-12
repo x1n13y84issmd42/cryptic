@@ -1,9 +1,3 @@
 [submodule "creep"]
 	path = creep
 	url = https://github.com/x1n13y84issmd42/creep.git
-[submodule "lib-qeq"]
-	path = lib-qeq
-	url = https://github.com/x1n13y84issmd42/lib-qeq.git
-[submodule "lib-id"]
-	path = lib-id
-	url = https://github.com/x1n13y84issmd42/lib-id.git
